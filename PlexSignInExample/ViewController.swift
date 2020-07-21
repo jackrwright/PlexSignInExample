@@ -7,14 +7,186 @@
 //
 
 import UIKit
+import PlexAPI
+import SafariServices
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var tokenLabel: UILabel!
+    @IBOutlet weak var signInActivity: UIActivityIndicatorView!
+    
+    // MARK: - Button Handlers
+    
+    @IBAction func signInTapped(_ sender: UIButton) {
+        
+        if self.isSignedIn {
+            
+            let alert = UIAlertController(title: "Sign out?", message: nil, preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { (action) in
+                
+                // sign out
+                self.isSignedIn = false
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+            
+        } else {
+            
+            // start the sign-in process...
+            
+            self.isSigningIn = true
+            
+            PlexAPI.requestToken { (url, error) in
+                
+                DispatchQueue.main.async {
+                    
+                    if let error = error {
+                        
+                        let alert = UIAlertController(title: "Failed to sign in", message: error.localizedDescription, preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        
+                        self.present(alert, animated: true, completion: nil)
+                        
+                        self.isSignedIn = false
+                        self.isSigningIn = false
+                        
+                    } else {
+                        
+                        if let url = url {
+                            
+                            // open in a browser
+                            
+                            DispatchQueue.main.async {
+                                
+                                self.safariVC = SFSafariViewController(url: url)
+                                
+                                self.present(self.safariVC!, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-
-
+    
+    // MARK: - View controller life-cycle
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.isSignedIn = PlexAPI.isSignedIn
+        
+        if isSignedIn {
+            
+            // validate the current token
+            PlexAPI.getToken { (token, error) in
+                
+                DispatchQueue.main.async {
+                    
+                    self.isSignedIn = token != nil ? true : false
+                    
+                    self.tokenLabel.text = token
+                }
+            }
+        }
+        
+        // Register for a notification of when we received an auth token
+        Foundation.NotificationCenter.default.addObserver(self,
+                                                          selector: #selector(didSignIn(_:)),
+                                                          name: NSNotification.Name(rawValue: PlexAPI.signedIntoPlex),
+                                                          object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        if isSigningIn {
+            
+            self.pollForAuthToken()
+        }
+    }
+    
+    // MARK: - Private (methods)
+    
+    @objc private func didSignIn(_ notification: Notification) {
+        
+        DispatchQueue.main.async {
+            
+            self.isSignedIn = true
+            
+            self.safariVC?.dismiss(animated: true, completion: nil)
+            
+            self.tokenLabel.text = PlexAPI.savedToken ?? "No Token!"
+        }
+    }
+    
+    
+    // MARK: - Private (properties)
+    
+    private var isSignedIn: Bool {
+        
+        get {
+            PlexAPI.isSignedIn
+        }
+        
+        set {
+            // Update the UI when the signed-in status changes
+            
+            DispatchQueue.main.async {
+                
+                if newValue == false {
+                    
+                    // signed out
+                    
+                    self.signInButton.setTitle("Sign in", for: .normal)
+                    
+                    self.tokenLabel.text = ""
+                    
+                    PlexAPI.signOut()
+                    
+                } else {
+                    
+                    // signed into plex.tv (we have a valid token)
+                    
+                    self.isSigningIn = false
+                    
+                    self.signInButton.setTitle("Sign out", for: .normal)
+                }
+            }
+        }
+    }
+    
+    private var isSigningIn: Bool = false {
+        didSet {
+            if isSigningIn {
+                self.signInActivity.startAnimating()
+            } else {
+                self.timer?.invalidate()
+                self.signInActivity.stopAnimating()
+            }
+        }
+    }
+    
+    private var timer: Timer?
+    
+    private func pollForAuthToken() {
+        
+        timer =  Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            
+            PlexAPI.checkForAuthToken()
+        }
+    }
+    
+    private var safariVC: SFSafariViewController? = nil
+    
 }
 

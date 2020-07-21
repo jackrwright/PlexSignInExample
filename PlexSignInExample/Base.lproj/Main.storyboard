@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,70 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PlexSignInExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plex.tv Sign-in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbA-qL-GBE">
+                                <rect key="frame" x="120.5" y="60" width="173" height="34"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cce-Ih-SUQ">
+                                <rect key="frame" x="183.5" y="158" width="47" height="30"/>
+                                <state key="normal" title="Sign in"/>
+                                <connections>
+                                    <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="im7-Cv-hGJ"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="IaJ-d9-Nwv">
+                                <rect key="frame" x="238.5" y="163" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybh-na-cT7">
+                                <rect key="frame" x="181.5" y="233" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddu-Oy-se3">
+                                <rect key="frame" x="16" y="262" width="382" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20.5" id="629-p6-EjD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IaJ-d9-Nwv" firstAttribute="leading" secondItem="Cce-Ih-SUQ" secondAttribute="trailing" constant="8" id="0uD-Yg-8WX"/>
+                            <constraint firstItem="Cce-Ih-SUQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Qw-i0-5dX"/>
+                            <constraint firstItem="Cce-Ih-SUQ" firstAttribute="centerX" secondItem="ddu-Oy-se3" secondAttribute="centerX" id="ARQ-Ul-2s7"/>
+                            <constraint firstItem="Ybh-na-cT7" firstAttribute="top" secondItem="Cce-Ih-SUQ" secondAttribute="bottom" constant="45" id="KIB-KH-vbh"/>
+                            <constraint firstItem="ddu-Oy-se3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="KNn-Ji-H6W"/>
+                            <constraint firstItem="XbA-qL-GBE" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QdM-KQ-Ccj"/>
+                            <constraint firstItem="Cce-Ih-SUQ" firstAttribute="centerY" secondItem="IaJ-d9-Nwv" secondAttribute="centerY" id="QlY-yW-GFN"/>
+                            <constraint firstItem="Cce-Ih-SUQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UUf-Jg-UeZ"/>
+                            <constraint firstItem="ddu-Oy-se3" firstAttribute="top" secondItem="Ybh-na-cT7" secondAttribute="bottom" constant="8" id="ZdF-Ex-wwN"/>
+                            <constraint firstItem="XbA-qL-GBE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ltA-ni-xl6"/>
+                            <constraint firstItem="Ybh-na-cT7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="luk-7F-W7D"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="XbA-qL-GBE" secondAttribute="top" constant="-16" id="sJj-HZ-ZQD"/>
+                            <constraint firstItem="Cce-Ih-SUQ" firstAttribute="top" secondItem="XbA-qL-GBE" secondAttribute="bottom" constant="64" id="uVx-Y5-4kd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="signInActivity" destination="IaJ-d9-Nwv" id="8jI-Ya-chI"/>
+                        <outlet property="signInButton" destination="Cce-Ih-SUQ" id="mri-2N-8EW"/>
+                        <outlet property="tokenLabel" destination="ddu-Oy-se3" id="ubG-V7-GVd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="104"/>
         </scene>
     </scenes>
 </document>

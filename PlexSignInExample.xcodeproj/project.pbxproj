@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		21BF695024C769E90024334A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BF694E24C769E90024334A /* Main.storyboard */; };
 		21BF695224C769EB0024334A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21BF695124C769EB0024334A /* Assets.xcassets */; };
 		21BF695524C769EB0024334A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BF695324C769EB0024334A /* LaunchScreen.storyboard */; };
+		21BF696824C770A90024334A /* PlexAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 21BF696724C770A90024334A /* PlexAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		21BF695124C769EB0024334A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21BF695424C769EB0024334A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21BF695624C769EB0024334A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21BF696524C7702E0024334A /* PlexAPI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PlexAPI; path = ../PlexAPI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21BF696824C770A90024334A /* PlexAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +45,8 @@
 			children = (
 				21BF694724C769E90024334A /* PlexSignInExample */,
 				21BF694624C769E90024334A /* Products */,
+				21BF696524C7702E0024334A /* PlexAPI */,
+				21BF696624C770A90024334A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +72,13 @@
 			path = PlexSignInExample;
 			sourceTree = "<group>";
 		};
+		21BF696624C770A90024334A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +95,9 @@
 			dependencies = (
 			);
 			name = PlexSignInExample;
+			packageProductDependencies = (
+				21BF696724C770A90024334A /* PlexAPI */,
+			);
 			productName = PlexSignInExample;
 			productReference = 21BF694524C769E90024334A /* PlexSignInExample.app */;
 			productType = "com.apple.product-type.application";
@@ -338,6 +353,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		21BF696724C770A90024334A /* PlexAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PlexAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 21BF693D24C769E90024334A /* Project object */;
 }
