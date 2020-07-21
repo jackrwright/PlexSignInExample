@@ -178,6 +178,8 @@ class ViewController: UIViewController {
     
     private var timer: Timer?
     
+    
+    /// Poll periodically for a valid auth token to show up
     private func pollForAuthToken() {
         
         timer =  Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
