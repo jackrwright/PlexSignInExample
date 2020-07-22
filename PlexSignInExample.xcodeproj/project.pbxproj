@@ -43,6 +43,7 @@
 		21BF693C24C769E90024334A = {
 			isa = PBXGroup;
 			children = (
+				21BF696C24C889D20024334A /* README.md */,
 				21BF694724C769E90024334A /* PlexSignInExample */,
 				21BF694624C769E90024334A /* Products */,
 				21BF696624C770A90024334A /* Frameworks */,
@@ -60,7 +61,6 @@
 		21BF694724C769E90024334A /* PlexSignInExample */ = {
 			isa = PBXGroup;
 			children = (
-				21BF696C24C889D20024334A /* README.md */,
 				21BF694824C769E90024334A /* AppDelegate.swift */,
 				21BF694A24C769E90024334A /* SceneDelegate.swift */,
 				21BF694C24C769E90024334A /* ViewController.swift */,
