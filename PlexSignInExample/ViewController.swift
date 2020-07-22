@@ -38,6 +38,16 @@ class ViewController: UIViewController {
             
         } else {
             
+            if self.isSigningIn {
+                
+                // user wants to cancel sign-in
+                
+                self.timer?.invalidate()
+                self.isSigningIn = false
+                
+                return
+            }
+            
             // start the sign-in process...
             
             self.isSigningIn = true
@@ -82,11 +92,12 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
+        // Initially set the UI to indicate sign-in status based on whether there is a token saved.
         self.isSignedIn = PlexAPI.isSignedIn
         
         if isSignedIn {
             
-            // validate the current token
+            // verify that the current token is valid and update the UI accordingly
             PlexAPI.getToken { (token, error) in
                 
                 DispatchQueue.main.async {
@@ -117,6 +128,8 @@ class ViewController: UIViewController {
     
     // MARK: - Private (methods)
     
+    /// This method is called in response to the PlexAPI.signedIntoPlex notification
+    /// - Parameter notification: not used
     @objc private func didSignIn(_ notification: Notification) {
         
         DispatchQueue.main.async {
@@ -168,10 +181,12 @@ class ViewController: UIViewController {
     private var isSigningIn: Bool = false {
         didSet {
             if isSigningIn {
+                self.signInButton.setTitle("Cancel", for: .normal)
                 self.signInActivity.startAnimating()
             } else {
                 self.timer?.invalidate()
                 self.signInActivity.stopAnimating()
+                self.signInButton.setTitle("Sign in", for: .normal)
             }
         }
     }

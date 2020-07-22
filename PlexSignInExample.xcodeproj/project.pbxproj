@@ -13,7 +13,7 @@
 		21BF695024C769E90024334A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BF694E24C769E90024334A /* Main.storyboard */; };
 		21BF695224C769EB0024334A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21BF695124C769EB0024334A /* Assets.xcassets */; };
 		21BF695524C769EB0024334A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21BF695324C769EB0024334A /* LaunchScreen.storyboard */; };
-		21BF696824C770A90024334A /* PlexAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 21BF696724C770A90024334A /* PlexAPI */; };
+		21BF696B24C887500024334A /* PlexAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 21BF696A24C887500024334A /* PlexAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		21BF695124C769EB0024334A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21BF695424C769EB0024334A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21BF695624C769EB0024334A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		21BF696524C7702E0024334A /* PlexAPI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PlexAPI; path = ../PlexAPI; sourceTree = "<group>"; };
+		21BF696C24C889D20024334A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21BF696824C770A90024334A /* PlexAPI in Frameworks */,
+				21BF696B24C887500024334A /* PlexAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,7 +45,6 @@
 			children = (
 				21BF694724C769E90024334A /* PlexSignInExample */,
 				21BF694624C769E90024334A /* Products */,
-				21BF696524C7702E0024334A /* PlexAPI */,
 				21BF696624C770A90024334A /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +60,7 @@
 		21BF694724C769E90024334A /* PlexSignInExample */ = {
 			isa = PBXGroup;
 			children = (
+				21BF696C24C889D20024334A /* README.md */,
 				21BF694824C769E90024334A /* AppDelegate.swift */,
 				21BF694A24C769E90024334A /* SceneDelegate.swift */,
 				21BF694C24C769E90024334A /* ViewController.swift */,
@@ -96,7 +96,7 @@
 			);
 			name = PlexSignInExample;
 			packageProductDependencies = (
-				21BF696724C770A90024334A /* PlexAPI */,
+				21BF696A24C887500024334A /* PlexAPI */,
 			);
 			productName = PlexSignInExample;
 			productReference = 21BF694524C769E90024334A /* PlexSignInExample.app */;
@@ -126,6 +126,9 @@
 				Base,
 			);
 			mainGroup = 21BF693C24C769E90024334A;
+			packageReferences = (
+				21BF696924C887500024334A /* XCRemoteSwiftPackageReference "PlexAPI" */,
+			);
 			productRefGroup = 21BF694624C769E90024334A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -302,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7BATW2E53G;
 				INFOPLIST_FILE = PlexSignInExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,6 +324,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7BATW2E53G;
 				INFOPLIST_FILE = PlexSignInExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,9 +359,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		21BF696924C887500024334A /* XCRemoteSwiftPackageReference "PlexAPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jackrwright/PlexAPI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		21BF696724C770A90024334A /* PlexAPI */ = {
+		21BF696A24C887500024334A /* PlexAPI */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 21BF696924C887500024334A /* XCRemoteSwiftPackageReference "PlexAPI" */;
 			productName = PlexAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
